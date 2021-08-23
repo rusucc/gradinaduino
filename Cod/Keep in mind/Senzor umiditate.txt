@@ -1,1 +1,2 @@
 Nu trebuie tinut sub tensiune tot timpul
+pulldown resistors
