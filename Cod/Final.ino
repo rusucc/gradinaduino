@@ -2,6 +2,8 @@
   Rusu Cosmin-Constantin
   Gradinaduino v1.0
 */
+
+// D0=1 daca h < valoare (trebuie udata)
 #include "LedControl.h"
 //definitii pentru valorile de timp
 const uint32_t _SECUNDA = 1000UL;
@@ -46,16 +48,17 @@ void error() {
 }
 int CitireUmiditate () {
   digitalWrite(pin_trn_senzor, HIGH); //pornire senzor
-  Serial.print("Shhht, vorbeste planta si spune ca: ");
+  Serial.print("Status: ");
   delay(1000);
-  int valoare_umiditate = digitalRead(out_senzor); //citire valoare
+  int valoare_umiditate = digitalRead(out_senzor); //citire valoare 0ok,1nok
+  Serial.println(valoare_umiditate);
   delay(1000);
   digitalWrite(pin_trn_senzor, LOW);  //oprire senzor
   switch (valoare_umiditate) {
-    case 0:
+    case 1:
       Serial.println("trebuie udata ! :/");
       break;
-    case 1:
+    case 0:
       Serial.println("este in stare buna !:)");
   }
   return valoare_umiditate;
@@ -123,10 +126,10 @@ void loop() {
   lc.setChar(0, 7, valoare_umiditate, false); //valoarea umiditatii afisata in permanenta pe display
   delay(2*_SECUNDA);                             //delayul pt vizibilitate
   switch (valoare_umiditate) {
-    case 1:
+    case 0:
       //sol destul de umed, totul ok
       break;
-    case 0:
+    case 1:
       //sol nefiind umed
       uda(100,"MILILITRI");//actionare pompa
       break;
@@ -139,5 +142,5 @@ void loop() {
   Serial.println("Ne revedem peste 8 ore !");
   oprire_display();
   wait(8, "ORE");
-  //wait(8,"SECUNDE");
+  //wait(4,"SECUNDE");
 }
