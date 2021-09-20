@@ -11,7 +11,7 @@ const uint32_t _MINUT = 60 * _SECUNDA;
 const uint32_t _ORA = 60 * _MINUT;
 const int d_delay = 400;
 //definitii pentru volum
-const double _DEBIT = 1000 / 60 ; // mililitru/s ;
+const double _DEBIT = 700 / 60 ; // mililitru/s ;
 const uint32_t _LITRU = 1 ;
 //pin layout
 const int pin_pompa = 5;            //DEBIT  POMPA ~= 1L/MIN
